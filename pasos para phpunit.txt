@@ -1,0 +1,124 @@
+este comando lo aplicas en tu proyecto, laravel 8 ahi aparece
+en listado si tienes phpUnit, dentro de tu proyecto laravel 8
+
+composer.json esta la escrito todo y la version de tu phpUnit.
+
+escribe este comando:
+
+composer show --all | grep phpunit
+
+--------------------------
+crear prueba dentro del proyecto:
+
+php artisan make:test NombreDeTuPrueba
+
+Esto creará un nuevo archivo de prueba en el directorio tests/Unit.
+
+-----------------------------
+ahora busca el nombre de tu prueba creada en el proyecto en la carpeta
+tests/Unit/ExampleTest.php
+
+vamos a modificar ejemplo:
+
+el codigo puede estar asi:
+
+<?php
+
+namespace Tests\Unit;
+
+use PHPUnit\Framework\TestCase;
+
+class ExampleTest extends TestCase
+{
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function test_example()
+    {
+        $this->assertTrue(true);
+    }
+}
+
+modificar esto:
+
+<?php
+
+namespace Tests\Unit;
+
+use PHPUnit\Framework\TestCase;
+use App\Calculator;
+
+class CalculatorTest extends TestCase
+{
+    public function testSuma()
+    {
+        $calculator = new Calculator();
+        $result = $calculator->sumar(2, 3);
+
+        $this->assertEquals(5, $result);
+    }
+}
+
+SI te das cuenta en el: use App\Calculator;
+llama a esa funcion, con eso tu puedes llamar las funciones que desees
+hacer el test puedes llamar a controladores, etc.
+
+Ojo:
+se va a crear una funcion de prueba.
+
+comando para crear funcion de prueba:
+-
+php artisan make:class Calculator
+--------------------------------------
+Nota en caso no funcione el comando creas de manera manual en la carpeta App
+el archivo: 
+
+Calculator.php
+
+dentro de este archivo vamos a colocar este codigo:
+
+<?php
+
+namespace App;
+
+class Calculator
+{
+    public function sumar($a, $b)
+    {
+        return $a + $b;
+    }
+}
+
+
+Al final colocas este comando:
+
+php artisan test
+
+
+Si el resultado te manda en verde es porque esta bien.
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
